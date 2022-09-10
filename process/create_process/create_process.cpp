@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+	// У вас тут будет свой путь, в зависимости от того, где вы скомпилируете файл process_output_info.cpp
 	char lpszAppName[] = "D:\\education\\SystemProgramming\\process\\create_process\\process_output_info\\x64\\Debug\\process_output_info.exe";
 	STARTUPINFO si;
 	PROCESS_INFORMATION piApp;
