@@ -1,0 +1,50 @@
+﻿#include <windows.h>
+#include <iostream>
+
+using namespace std;
+
+volatile int a[10];
+
+DWORD WINAPI thread(LPVOID)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		a[i] = i + 1;
+		Sleep(7);
+	}
+
+	return 0;
+}
+int main()
+{
+	int i;
+
+	HANDLE hThread;
+	DWORD IDThread;
+	
+	cout << "An initial state of the array: ";
+	
+	for (i = 0; i < 10; i++)
+		cout << a[i] << ' ';
+	cout << endl;
+
+	hThread = CreateThread(NULL, 0, thread, NULL, 0, &IDThread);
+	
+	if (hThread == NULL)
+		return GetLastError();
+	
+	cout << "A modified state of the array: ";
+	
+	for (i = 0; i < 10; i++)
+	{
+		cout << a[i] << ' ' << flush;
+		Sleep(11);
+	}
+	cout << endl;
+	
+	CloseHandle(hThread);
+	
+	system("pause");
+
+	return 0;
+}
